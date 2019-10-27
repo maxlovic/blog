@@ -1,0 +1,306 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{animate}
+\usepackage{graphicx}
+\geometry{left=2cm}
+\geometry{right=1.5cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+\usepackage{color}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.0,0.0,1.0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "keywordstyle={\color{codeblue}},commentstyle={\color{codegreen}},numbers=left,language=Python"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Understanding the Bjontegaard Delta-Rate Metric
+\end_layout
+
+\begin_layout Author
+by Maxim Sharabayko
+\end_layout
+
+\begin_layout Standard
+Let us have two video encoders we want to compare in terms of compression
+ efficiency.
+ From now on by the term 'compression efficiency' we will assume two measures:
+ 1) bit rate of a compressed video sequence and 2) distortion introduced
+ by lossy compression.
+\end_layout
+
+\begin_layout Standard
+Both encoders provide interfaces to modify their compression settings, affecting
+ target bitrate and distortion.
+ Let us assume we have four different settings for each of two encoders.
+ We can mark our quality measures on rate-distortion plot as shown on figure
+ below with PSNR distortion metric.
+ Each point corresponds to compression results obtained with certain compression
+ settings.
+ Obviously, the higher the points are located, the more efficient the compressio
+n is (less distortion and higher quality is provided at lower bit rates).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rd-plot.png
+	lyxscale 50
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rate-Distortion Compression Efficiency Points of Two Hypothetical Video
+ Encoders
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the example above we obviously see the 
+\begin_inset Quotes eld
+\end_inset
+
+Encoder A
+\begin_inset Quotes erd
+\end_inset
+
+ provides superior results to the 
+\begin_inset Quotes eld
+\end_inset
+
+Encoder B
+\begin_inset Quotes erd
+\end_inset
+
+.
+ But how do we compare the efficiency in numerical form?
+\end_layout
+
+\begin_layout Standard
+One way to do this is to fix one measurement and compare by another.
+ Let's say, we want to compare bit rate savings at PSNR distortion level
+ of 38 dB, but available measure points are not exactly there.
+ So we need to interpolate the rate-distortion curve to get an approximation
+ of the bit rate at the target distortion level (see figure below).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rd-plot-interpol.png
+	lyxscale 50
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rate-Distortion Compression Efficiency Points of Two Hypothetical Video
+ Encoders
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the help of interpolation we can compare compression efficiency of
+ the two encoders at a fixed distortion level.
+ But how do we compare compression efficiency on the whole interval of distortio
+n available? Obviously, integration needs to be applied.
+\end_layout
+
+\begin_layout Standard
+First, RD-curves of two encoders are interpolated (see Fig.
+ 2).
+ Second, delta rate values within the interpolation interval are accumulated,
+ which correspond to the area between two RD-curves (Fig.
+ 3).
+ Finally, to get the average bit rate differences of the two encoders the
+ area between the two RD-curves has to be divided by interpolation interval.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rd-plot-delta-rate.png
+	lyxscale 50
+	width 8cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rate-Distortion Compression Efficiency Points of Two Hypothetical Video
+ Encoders
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Interpolation of an RD-cure can be done in different ways: linear, polynomial,
+ spline interpolation.
+ The most advised is piecewise cubic interpolation [?Common test conditions].
+ Regardless of interpolation method used, there is a way to improve interpolatio
+n accuracy and obtain more precise results.
+ As soon as the most wide-spread compression standards like MPEG-2, H.264/AVC,
+ H.265/HEVC, VP8, VP9, – they all have a quantization step, where quantization
+ value is proportional to a power of 2.
+\end_layout
+
+\end_body
+\end_document

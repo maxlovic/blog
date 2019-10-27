@@ -1,0 +1,47 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Max Sharabayko Blog"
+theme = "mainroad"
+paginate = "10"
+
+[Author]
+  name = "Maxim Sharabayko"
+  bio = "John Doe's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
+  avatar = "img/avatar.png"
+
+[Params]
+  #subtitle = "A personal blog about everything"
+  description = "A personal blog about everything" # Site description. Used in meta description
+  copyright = "Maxim Sharabayko"
+  
+[Params.sidebar]
+  home = "right" # Configure layout for home page
+  list = "left"  # Configure layout for list pages
+  single = false # Configure layout for single pages
+  # Enable widgets in given order
+  widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
+  
+[Params.widgets.social]
+  # Enable parts of social widget
+  #facebook = "username"
+  #instagram = "username"
+  linkedin = "maxim-sharabayko"
+  #telegram = "username"
+  github = "maxlovic"
+  #gitlab = "username"
+  #bitbucket = "username"
+  #email = "example@example.com"
+  
+#[menu]
+#
+#  [[menu.main]]
+#    identifier = "about"
+#    name = "about hugo"
+#    pre = "<i class='fa fa-heart'></i>"
+#    url = "/about/"
+#    weight = -110
+#
+#  [[menu.main]]
+#    name = "papers"
+#    url = "/papers/"
+#    weight = -100
