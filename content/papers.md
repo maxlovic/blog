@@ -1,5 +1,5 @@
 ---
-title: Papers
+title: Publications
 date: 2019-10-03
 authorbox: false
 sidebar: false
@@ -7,6 +7,17 @@ toc: false
 menu: main
 ---
 
+## Top Publications
+
+---
+
+### Fast Rate Estimation for RDO Mode Decision in HEVC
+SHARABAYKO M.P., PONOMAREV O.G. \
+Entropy. – 2014. – Vol. 16. – No. 12. – pp. 6667–6685 \
+Availability: [Entropy Journal](http://www.mdpi.com/1099-4300/16/12/6667)
+
+
+## Publications by Chronology
 --- 
 
 

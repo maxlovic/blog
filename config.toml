@@ -32,15 +32,15 @@ paginate = "10"
   #bitbucket = "username"
   #email = "example@example.com"
   
-#[menu]
-#
-#  [[menu.main]]
-#    identifier = "about"
-#    name = "about hugo"
-#    pre = "<i class='fa fa-heart'></i>"
-#    url = "/about/"
-#    weight = -110
-#
+[menu]
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "blog"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -110
+
 #  [[menu.main]]
 #    name = "papers"
 #    url = "/papers/"
