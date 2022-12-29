@@ -1,6 +1,5 @@
 ---
 title: Publications
-date: 2019-10-03
 authorbox: false
 sidebar: false
 toc: false
