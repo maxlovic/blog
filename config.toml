@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://maxsharabayko.github.io/blog/"
 languageCode = "en-us"
 title = "Max Sharabayko Blog"
 theme = "mainroad"
@@ -6,18 +6,22 @@ paginate = "10"
 
 [Author]
   name = "Maxim Sharabayko"
-  bio = "John Doe's true identity is unknown. Maybe he is a successful blogger or writer. Nobody knows it."
+  bio = "To be added."
   avatar = "img/avatar.png"
 
 [Params]
   #subtitle = "A personal blog about everything"
-  description = "A personal blog about everything" # Site description. Used in meta description
+  description = "A personal blog about everything"
   copyright = "Maxim Sharabayko"
+  mathjax = true # Enable MathJax
+  mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" 
+  mathjaxConfig = "TeX-AMS-MML_HTMLorMML"
   
 [Params.sidebar]
   home = "right" # Configure layout for home page
   list = "left"  # Configure layout for list pages
-  single = false # Configure layout for single pages
+  #single = false # Configure layout for single pages
+  single = "right" # Configure layout for single pages
   # Enable widgets in given order
   widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
   
