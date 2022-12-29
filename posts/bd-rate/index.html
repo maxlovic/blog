@@ -12,19 +12,19 @@ producing different bitrate and distortion.</p><p>Let us assume we have four dif
 Marking the bitrate on the x-axis and PSNR distortion on the y-axis the rate-distortion plot can be drawn
 as shown on figure below.
 Obviously, the higher the points are located, the more efficient the compression
-is (<em><strong>less distortion and higher visual quality is provided at lower bit rates</strong></em>).</p><figure><img src=/images/bd-rate/rd-plot.png alt="Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders"><figcaption><p>Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders</p></figcaption></figure><p>In the example above we obviously see the <strong>Encoder A</strong>
+is (<em><strong>less distortion and higher visual quality is provided at lower bit rates</strong></em>).</p><figure><img src=rd-plot.png alt="Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders"><figcaption><p>Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders</p></figcaption></figure><p>In the example above we obviously see the <strong>Encoder A</strong>
 provides superior results to the <strong>Encoder B</strong>.<br>How do we compare the efficiency in numerical form?</p><h3 id=rate-distortion-curve>Rate-Distortion Curve</h3><p>One way to compare the efficiency in numerical form is to fix one measurement and compare by another.
 Let&rsquo;s say, we want to compare bit rate savings at a certain PSNR distortion level
 of 38 dB, but available measure points are not exactly there.
 We need to interpolate the rate-distortion curve to get an approximation
-of the bit rate at the target distortion level (see figure below).</p><figure><img src=/images/bd-rate/rd-plot-interpol.png alt="Rate-Distortion Curves"><figcaption><p>Rate-Distortion Curves</p></figcaption></figure><p>With the help of interpolation we now have two RD curves instead of points.
+of the bit rate at the target distortion level (see figure below).</p><figure><img src=rd-plot-interpol.png alt="Rate-Distortion Curves"><figcaption><p>Rate-Distortion Curves</p></figcaption></figure><p>With the help of interpolation we now have two RD curves instead of points.
 Interpolation of an RD-cure can be done in different ways: linear, polynomial,
 spline interpolation. The most widely adopted is the piecewise cubic interpolation.</p><p>By measuring the distance between the two curves at the certain distortion level
 the bitrate &ldquo;savings&rdquo; of the one encoder compared to the other one at this distortion level can be compared numerically.</p><p>But how do we compare compression efficiency on the whole distortion interval
 available?</p><h3 id=bd-rate-metric>BD Rate Metric</h3><p>Bjontegaard Delta-Rate (BD Rate) metric, proposed in 2001 by Gisle Bjontegaard, is a method for calculating
 the average difference between two rate-distortion (RD) curves
 <a href=#references title="Calculation of Average PSNR Differences between RD curves">[VCEG-M33]</a>.</p><p>The basic steps are:</p><ol><li>fit a curve through several data points (see <a href=#rate-distortion-curve>Rate-Distortion Curve</a>);</li><li>find an expression for the integral of the curve <a href=#references title="Calculation of Average PSNR Differences between RD curves">[VCEG-M33]</a>;</li><li>the average difference is the difference between the integrals divided by the integration interval.</li></ol><p>In other words, to compare two encoders (or two encoding configurations) the
-area between the two RD-curves has to be divided by interpolation interval as shown below.</p><figure><img src=/images/bd-rate/rd-plot-delta-rate.png alt="RD Curves Delta Rate"><figcaption><p>RD Curves Delta Rate</p></figcaption></figure><p>BD-Rate is measured in percent and expresses the average percentage difference in bitrate of the two datasets
+area between the two RD-curves has to be divided by interpolation interval as shown below.</p><figure><img src=rd-plot-delta-rate.png alt="RD Curves Delta Rate"><figcaption><p>RD Curves Delta Rate</p></figcaption></figure><p>BD-Rate is measured in percent and expresses the average percentage difference in bitrate of the two datasets
 at a similar distortion value measured by an objective metric (usually PSNR).
 The BD Rate value is zero when calculated metrics are the same.
 A negative BD Rate value of Encoder A to Encoder B comparison would mean Encoder A provides better
