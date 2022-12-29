@@ -13,9 +13,11 @@ paginate = "10"
   #subtitle = "A personal blog about everything"
   description = "A personal blog about everything"
   copyright = "Maxim Sharabayko"
+  authorbox = false # Enable to show author info in the post
   mathjax = true # Enable MathJax
   mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" 
   mathjaxConfig = "TeX-AMS-MML_HTMLorMML"
+  post_meta = ["date", "categories"]
   
 [Params.thumbnail]
   # Show thumbnail only for list items
