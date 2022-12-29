@@ -3,6 +3,7 @@ name: Publish with Hugo
 on:
   push:
     branches: [ master ]
+  pull_request:
 
 jobs:
   build-deploy:
@@ -10,10 +11,20 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           submodules: true
-      - name: Publish Site
-        uses: chabad360/hugo-gh-pages@master
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
-          githubToken: ${{ secrets.PERSONAL_TOKEN }}
+          hugo-version: 'latest'
+          # extended: true
+      - name: Build
+        run: hugo --minify
+      - name: Publish Site
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
