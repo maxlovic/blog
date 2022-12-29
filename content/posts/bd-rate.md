@@ -5,7 +5,7 @@ draft: false
 category: "Video Compression"
 tags: ["Video Compression", "PSNR", "Quality Metrics"]
 mathjax: false
-#thumbnail: /images/bd-rate/rd-plot-delta-rate.png
+thumbnail: /images/bd-rate/rd-plot-delta-rate.png
 ---
 
 A video encoder can be configured in many ways: different GOP (Group of Pictures) structure,
@@ -39,7 +39,7 @@ is (***less distortion and higher visual quality is provided at lower bit rates*
 
 In the example above we obviously see the **Encoder A**
 provides superior results to the **Encoder B**.  
-***How do we compare the efficiency in numerical form?***
+<mark>How do we compare the efficiency in numerical form?</mark>
 
 ### Rate-Distortion Curve
 

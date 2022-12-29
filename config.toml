@@ -17,6 +17,10 @@ paginate = "10"
   mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" 
   mathjaxConfig = "TeX-AMS-MML_HTMLorMML"
   
+[Params.thumbnail]
+  # Show thumbnail only for list items
+  visibility = ["list"]
+
 [Params.sidebar]
   home = "right" # Configure layout for home page
   list = "left"  # Configure layout for list pages
