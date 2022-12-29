@@ -5,7 +5,7 @@ draft: false
 category: "Video Compression"
 tags: ["Video Compression", "PSNR", "Quality Metrics"]
 mathjax: false
-thumbnail: /posts/bd-rate/rd-plot-delta-rate.png
+thumbnail: /blog/posts/bd-rate/rd-plot-delta-rate.png
 ---
 
 A video encoder can be configured in many ways: different GOP (Group of Pictures) structure,
