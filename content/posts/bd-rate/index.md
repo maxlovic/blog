@@ -5,7 +5,7 @@ draft: false
 category: "Video Compression"
 tags: ["Video Compression", "PSNR", "Quality Metrics"]
 mathjax: false
-thumbnail: /images/bd-rate/rd-plot-delta-rate.png
+thumbnail: /posts/bd-rate/rd-plot-delta-rate.png
 ---
 
 A video encoder can be configured in many ways: different GOP (Group of Pictures) structure,
@@ -35,7 +35,7 @@ as shown on figure below.
 Obviously, the higher the points are located, the more efficient the compression
 is (***less distortion and higher visual quality is provided at lower bit rates***).
 
-{{< figure src="/images/bd-rate/rd-plot.png" caption="Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders">}}
+{{< figure src="rd-plot.png" caption="Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders">}}
 
 In the example above we obviously see the **Encoder A**
 provides superior results to the **Encoder B**.  
@@ -49,7 +49,7 @@ of 38 dB, but available measure points are not exactly there.
 We need to interpolate the rate-distortion curve to get an approximation
 of the bit rate at the target distortion level (see figure below).
 
-{{< figure src="/images/bd-rate/rd-plot-interpol.png" caption="Rate-Distortion Curves">}}
+{{< figure src="rd-plot-interpol.png" caption="Rate-Distortion Curves">}}
 
 With the help of interpolation we now have two RD curves instead of points.
 Interpolation of an RD-cure can be done in different ways: linear, polynomial,
@@ -76,7 +76,7 @@ The basic steps are:
 In other words, to compare two encoders (or two encoding configurations) the
 area between the two RD-curves has to be divided by interpolation interval as shown below.
 
-{{< figure src="/images/bd-rate/rd-plot-delta-rate.png" caption="RD Curves Delta Rate">}}
+{{< figure src="rd-plot-delta-rate.png" caption="RD Curves Delta Rate">}}
 
 BD-Rate is measured in percent and expresses the average percentage difference in bitrate of the two datasets
 at a similar distortion value measured by an objective metric (usually PSNR).
