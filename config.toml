@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Max Sharabayko Blog"
 theme = "mainroad"
 paginate = "10"
+disqusShortname = "https-maxsharabayko-github-io-blog" # Enable Disqus comments
 
 [Author]
   name = "Maxim Sharabayko"
