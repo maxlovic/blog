@@ -33,14 +33,14 @@ producing different bitrate and distortion.
 
 Let us assume we have four different compression results for each of the two encoders (A and B).
 Marking the bitrate on the x-axis and PSNR distortion on the y-axis the rate-distortion plot can be drawn
-as shown on figure below.
+as shown in the figure below.
 Obviously, the higher the points are located, the more efficient the compression
 is (***less distortion and higher visual quality is provided at lower bit rates***).
 
 {{< figure src="rd-plot.png" caption="Rate-Distortion Compression Efficiency Points of Two Hypothetical Video Encoders">}}
 
-In the example above we obviously see the **Encoder A**
-provides superior results to the **Encoder B**.  
+In the example above we obviously see **Encoder A**
+provides superior results to **Encoder B**.  
 <mark>How do we compare the efficiency in numerical form?</mark>
 
 ### Rate-Distortion Curve
@@ -54,8 +54,8 @@ of the bit rate at the target distortion level (see figure below).
 {{< figure src="rd-plot-interpol.png" caption="Rate-Distortion Curves">}}
 
 With the help of interpolation we now have two RD curves instead of points.
-Interpolation of an RD-cure can be done in different ways: linear, polynomial,
-spline interpolation. The most widely adopted is the piecewise cubic interpolation.
+Interpolation of an RD-curve can be done in different ways: linear, polynomial,
+and spline interpolations. The most widely adopted is the piecewise cubic interpolation.
 
 By measuring the distance between the two curves at the certain distortion level
 the bitrate "savings" of the one encoder compared to the other one at this distortion level can be compared numerically.
@@ -76,30 +76,30 @@ The basic steps are:
 3. the average difference is the difference between the integrals divided by the integration interval.
 
 In other words, to compare two encoders (or two encoding configurations) the
-area between the two RD-curves has to be divided by interpolation interval as shown below.
+area between the two RD-curves must be divided by interpolation interval as shown below.
 
 {{< figure src="rd-plot-delta-rate.png" caption="RD Curves Delta Rate">}}
 
 BD-Rate is measured in percent and expresses the average percentage difference in bitrate of the two datasets
 at a similar distortion value measured by an objective metric (usually PSNR).
 The BD Rate value is zero when calculated metrics are the same.
-A negative BD Rate value of Encoder A to Encoder B comparison would mean Encoder A provides better
+In a comparison between Encoder A and Encoder B a negative BD Rate would mean Encoder A provides better
 compression efficiency (lower bitrate at a similar visual quality level).
-A positive value would speak for inferior compression efficiency.
+A positive value would indicate inferior compression efficiency.
 
 If PSNR distortion value is compared using the bitrate as the basis of integration,
 the metric is called BD-PSNR and is measured in dB.
 
 It was observed that the difference between the curves is dominated by the high bitrates.
-The higher the bitrate is, the wider is usually the distance between the curves.
-Hence it is considered to be more appropriate to do the integration based on logarithmic scale of bitrate
+The higher the bitrate is, the wider the distance usually is between the curves.
+Hence it is considered more appropriate to do the integration based on logarithmic scale of bitrate
 [[VCEG-M33]]({{< ref "#references" >}} "Calculation of Average PSNR Differences between RD curves").  
-Another approach is to split the curve into three different quality ranges: low, medium and high;
+Another approach is to split the curve into three different quality ranges: low, medium and high,
 and additionally calculate the metric for low and high quality ranges
 [[VCEG-AI11\]]({{< ref "#references" >}} "Improvements of the BD-PSNR model.").
 
 The piecewise cubic interpolation combined with logarithmic scale was later found to provide
-more stable results e.g. compared to a regular cubic interpolation
+more stable results compared to a regular cubic interpolation
 [[VCEG-AL22]]({{< ref "#references" >}} "Reliability metric for BD measurements").
 
 The impact of the number of existing curve fitting approaches is studied in
