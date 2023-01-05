@@ -1,7 +1,7 @@
 ---
 title: "Examining SRT Streaming over 4G Networks"
 date: 2022-05-23
-draft: true
+draft: false
 category: "Network"
 tags: ["SRT"]
 mathjax: false
@@ -30,24 +30,13 @@ The collected metrics are presented below. Fig. 1 shows the total number of pack
 
 Certain changes of the end-to-end delay can be seen on Fig. 2. Still, the end-to-end latency over pure UDP is more or less stable, with a fluctuation region of about 150 ms, and occasional spikes of an extra 400 ms. Note that the end-to-end latency in this case is measured as the difference between system clocks of the two peers. The absolute value must be treated with care, as it heavily depends on how well both clocks are  synchronized (they can't be synchronized 100% accurate due to the laws of physics). However, the change of values over time provides a good estimate of the changes in the end-to-end latency between the sending and the receiving applications.
 
+{{< figure src="img/udp-packets-metrics.png" caption="Fig.1. Packets received over UDP during the 5 Mbps streaming.">}}
 
-
-<figure>
-  <img src="./images/udp-packets-metrics.png" style="width:60%">
-  <figcaption>Fig.1. Packets received over UDP during the 5 Mbps streaming.</figcaption>
-</figure>
-
-<figure>
-  <img src="./images/udp-metrics-latency.png" style="width:60%">
-  <figcaption>Fig.2. The end-to-end latency during the 5 Mbps UDP streaming.</figcaption>
-</figure>
+{{< figure src="img/udp-metrics-latency.png" caption="Fig.2. The end-to-end latency during the 5 Mbps UDP streaming.">}}
 
 The jitter of the incoming UDP packets is also quite stable (see Fig. 3) and stays around 4 ms, sometimes reaching 8 ms, which does not seem to be too drastic. In general, a decoder would compensate by having a buffer of the corresponding timespan.
 
-<figure>
-  <img src="./images/udp-metrics-jitter.png" style="width:60%">
-  <figcaption>Fig.3. Receiving jitter during the 5 Mbps UDP streaming.</figcaption>
-</figure>
+{{< figure src="img/udp-metrics-jitter.png" caption="Fig.3. Receiving jitter during the 5 Mbps UDP streaming.">}}
 
 ## 2. Configuring SRT Streaming
 
@@ -77,11 +66,7 @@ We run an example 3-minute 5 Mbps SRT streaming to see RTT variations in action 
 
 From the results in Fig. 4, the average RTT of the link is around 150 ms. We were also lucky to record spikes of up to 300 ms during short network congestion periods. Taking the average value of ~150 ms, the recommended lowest SRT latency value of 3 to 4 × RTT will not reliably cover possible delay fluctuations in mobile networks. It is better to use a higher value. For the following experiments a 5×RTT value of 750 ms (5×150 ms) and 8×RTT value of 1200 ms are chosen as SRT latency (buffering delay) for comparison.
 
-<figure>
-  <img src="./images/udp-RTT.png" style="width:60%">
-  <figcaption>Fig.4. RTT from the 5 Mbps SRT stream statistics.</figcaption>
-</figure>
-
+{{< figure src="img/udp-RTT.png" caption="Fig.4. RTT from the 5 Mbps SRT stream statistics.">}}
 
 ### 2.2. Limiting Maximum Bandwidth Usage
 
@@ -91,20 +76,11 @@ In our testing environment the maximum throughput defined by the ISP is around 2
 
 To better identify the actual boundaries, let us start sending a 5 Mbps live stream using SRT, increasing the source bitrate by 2.5 Mbps every 15 seconds. Graphs below show [SRT stats](https://github.com/Haivision/srt/blob/master/docs/API/statistics.md) from the SRT sender and receiver. It can be clearly seen that the 5 Mbps live stream does not encounter any notable congestion (see interval 0 - 15 seconds on Fig. 5-6). Higher streaming rates of 7.5 Mbps and 10 Mbps in general pass through the network, but are relatively often impacted by some notable packet drops and increases in RTT (a side indicator of congestion in the network, Fig. 7). Sending at 12.5 Mbps (seconds 45 - 60 on Fig. 5-6) causes notable congestion on the path.
 
-<figure>
-  <img src="./images/bwtest-late750-pr2180-take4-snd.png" style="width:60%">
-  <figcaption>Fig.5. Throughput test (sender side).</figcaption>
-</figure>
+{{< figure src="img/bwtest-late750-pr2180-take4-snd.png" caption="Fig.5. Throughput test (sender side).">}}
 
-<figure>
-  <img src="./images/bwtest-late750-pr2180-take4-rcv.png" style="width:60%">
-  <figcaption>Fig.6. Throughput test (receiver side).</figcaption>
-</figure>
+{{< figure src="img/bwtest-late750-pr2180-take4-rcv.png" caption="Fig.6. Throughput test (receiver side).">}}
 
-<figure>
-  <img src="./images/bwtest-late750-pr2180-take4-rtt.png" style="width:60%">
-  <figcaption>Fig.7. RTT in the throughput test .</figcaption>
-</figure>
+{{< figure src="img/bwtest-late750-pr2180-take4-rtt.png" caption="Fig.7. RTT in the throughput test.">}}
 
 The maximum bandwidth limit (output rate limit) of SRT can be specified directly using the [SRTO_MAXBW](https://github.com/Haivision/srt/blob/master/docs/API/API-socket-options.md#srto_maxbw) socket option. The limit can also be set in a different way by specifying the input (source) bitrate (see [SRTO_INPUTBW](https://github.com/Haivision/srt/blob/master/docs/API/API-socket-options.md#SRTO_INPUTBW)) and allowed overhead (see [SRTO_OHEADBW](https://github.com/Haivision/srt/blob/master/docs/API/API-socket-options.md#srto_oheadbw)) on top of it (`MAXBW = INPUTBW x (1 + OHEADBW)`). In such a configuration an input bitrate can be either set or estimated by SRT in runtime. Due to larger variations in RTT and congestion conditions in mobile networks, the higher the available overhead is, the better. This is because an opportunity to briefly send at a higher speed makes it possible for SRT to retransmit more packets and try to recover packet loss faster once the congestion and RTT are reduced.
 
@@ -112,7 +88,7 @@ It can be thus concluded that it is safer to stream at 8 Mbps over this network,
 
 ## 3. SRT Streaming Results
 
-#### 3.1. Streaming at 8 Mbps and 750 ms Latency (v1.5.0 RC0)
+### 3.1. Streaming at 8 Mbps and 750 ms Latency (v1.5.0 RC0)
 
 According to the selected configuration, we sent a test stream at 8 Mbps with the maximum bandwidth limit set to 10 Mbps (1250000 Bytes/s), and the receiver buffering latency set to 750 ms. The results of such streaming are presented in Fig. 8 - 12.
 
@@ -125,37 +101,21 @@ Overall, it can be seen that there is a small amount of packet loss on the link,
 
 There is, however, a notable loss of packets on the link around the 20th second (see Fig. 8-9). During this congestion event the path RTT had increased up to 1200 ms (see Fig. 10), exceeding the configured SRT latency. With such an increase of RTT, packets reach the receiver later than the target configured latency. Therefore, SRT has an empty receiver buffer and no time to recover the packet loss by a retransmission. Afterwards, the lost packets are arriving at 12 Mbps even though the sender has never exceeded 9 Mbps. This means those packets were buffered in the network and delivered in a burst once the resources were given back to the user by the mobile service. To be able to recover such a high loss, SRT latency should be increased above the spike of the RTT. Alternatively, this type of congestion can be considered rare and the resulting visual artefacts after the loss may be acceptable in favour of the lower end-to-end latency.
 
+{{< figure src="img/rate8-maxbw1250000-late750-pr2180-take1-snd.png" caption="Fig.8. Sender side statistics of the 8 Mbps stream with 750 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late750-pr2180-take1-snd.png" style="width:60%">
-  <figcaption>Fig.8. Sender side statistics of the 8 Mbps stream with 750 ms latency .</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late750-pr2180-take1-rcv.png" caption="Fig.9. Receiver side statistics of the 8 Mbps stream with 750 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late750-pr2180-take1-rcv.png" style="width:60%">
-  <figcaption>Fig.9. Receiver side statistics of the 8 Mbps stream with 750 ms latency .</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late750-pr2180-take1-rtt.png" caption="Fig.10. RTT on the path of the 8 Mbps stream with 750 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late750-pr2180-take1-rtt.png" style="width:60%">
-  <figcaption>Fig.10. RTT on the path of the 8 Mbps stream with 750 ms latency .</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late750-pr2180-take1-jitter.png" caption="Fig.11. Jitter of reading the 8 Mbps stream with 750 ms latency from SRT.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late750-pr2180-take1-jitter.png" style="width:60%">
-  <figcaption>Fig.11. Jitter of reading the 8 Mbps stream with 750 ms latency from SRT.</figcaption>
-</figure>
-
-<figure>
-  <img src="./images/rate8-maxbw1250000-late750-pr2180-take1-latency.png" style="width:60%">
-  <figcaption>Fig.12. End-to-end latency of reading the 8 Mbps stream with 750 ms latency from SRT.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late750-pr2180-take1-latency.png" caption="Fig.12. End-to-end latency of reading the 8 Mbps stream with 750 ms latency from SRT.">}}
 
 Note also that right after the heavy loss there is a spike in the end-to-end latency and jitter (after SRT) on the receiver side (see Fig. 11-12). The increase in latency happens because packets arrive in order, although delayed beyond the buffering latency. SRT does not drop these packets as they can be delivered to the receiving application (e.g. decoder) with origin timestamps. It is the decoder's job in this case to decide (e.g. based on those timestamps) what to do with delayed packets. For example, a video decoder could still decode related video frames (that might be reference frames) but either not present them to the user, or temporally increase the frame rate to catch up with the latency.
 
 The jitter (Fig. 11) fluctuates around 50 microseconds, which is notably lower compared to that of around 4 ms for pure UDP (Fig. 3). There are, however, notable small spikes related to an increase of the path RTT. Because the RTT increases from 150 ms to 1200 ms (beyond the configured SRT latency), the end-to-end latency temporally increases by roughly 820 ms.
 
-#### 3.3. Streaming at 8 Mbps and 1200 ms Latency (v1.5.0 RC0)
+### 3.2. Streaming at 8 Mbps and 1200 ms Latency (v1.5.0 RC0)
 
 Let us try to compensate the observed notable increase of RTT by increasing the SRT buffering latency to 1200 ms. The results of streaming at 8 Mbps with the maximum bandwidth limit set to 10 Mbits and the receiver buffering latency of 1200 ms are presented on Fig.13- 17.
 
@@ -163,32 +123,17 @@ From the sender side statistics, it can be seen that as before SRT compensates f
 
 Note also that the lost packets statistics of the sender count all events of loss reports for a packet, including repeated ones. The receiver-side statistics only count the actual loss detection event, not the number of loss reports sent. Therefore, these statistics do not match in Fig. 13 and 14.
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late1200-v145-take1-snd-packets.png" style="width:60%">
-  <figcaption>Fig.13. Sender side statistics of the 8 Mbps SRT stream with 1200 ms latency.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late1200-v145-take1-snd-packets.png" caption="Fig.13. Sender side statistics of the 8 Mbps SRT stream with 1200 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late1200-v145-take1-rcv-packets.png" style="width:60%">
-  <figcaption>Fig.14. Receiver side statistics of the 8 Mbps SRT stream with 1200 ms latency.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late1200-v145-take1-rcv-packets.png" caption="Fig.14. Receiver side statistics of the 8 Mbps SRT stream with 1200 ms latency.">}}
 
 There was a notable increase of the RTT at the 60th second of streaming (see Fig. 15), and a packet loss observed by the receiver. However, SRT managed to recover the packet loss and compensate for the increase in RTT.
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late1200-v145-take1-rcv-rtt.png" style="width:60%">
-  <figcaption>Fig.15. Path RTT during the 8 Mbps SRT stream with 1200 ms latency.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late1200-v145-take1-rcv-rtt.png" caption="Fig.15. Path RTT during the 8 Mbps SRT stream with 1200 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late1200-v145-take1-m-latency.png" style="width:60%">
-  <figcaption>Fig.16. End-to-end latency during the 8 Mbps SRT stream with 1200 ms latency.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late1200-v145-take1-m-latency.png" caption="Fig.16. End-to-end latency during the 8 Mbps SRT stream with 1200 ms latency.">}}
 
-<figure>
-  <img src="./images/rate8-maxbw1250000-late1200-v145-take1-jitter.png" style="width:60%">
-  <figcaption>Fig.17. Jitter during the 8 Mbps SRT stream with 1200 ms latency.</figcaption>
-</figure>
+{{< figure src="img/rate8-maxbw1250000-late1200-v145-take1-jitter.png" caption="Fig.17. Jitter during the 8 Mbps SRT stream with 1200 ms latency.">}}
 
 ## Conclusion
 
