@@ -14,6 +14,13 @@ Modern mobile networks are used in a wide variety of ways, including contributio
 
 In Section 1 we start by investigating the characteristics of streaming over pure UDP as a transport. In the following Section 2 we estimate two main parameters of the network path: round-trip time (RTT) and network throughput. Those estimates are needed to properly set up and configure the SRT streaming. Finally, we transmit SRT streams and analyze how SRT copes with the 4G network conditions.
 
+<blockquote>
+Secure Reliable Transport (SRT) is a transport protocol for ultra low (sub-second) latency live video and audio streaming,
+as well as for generic bulk data transfer. SRT is available as an open-source technology with the code on [GitHub](https://github.com/Haivision/srt),
+and the [Internet Draft specification](https://datatracker.ietf.org/doc/html/draft-sharabayko-srt-01).
+  
+</blockquote>
+
 ## 1. Checking the UDP Streaming
 
 We begin by sending a 5 Mbps constant bitrate (CBR) stream over UDP for two minutes to see the amount of packet loss and jitter on the path. We will use the [srt-xtransmit](https://github.com/maxsharabayko/srt-xtransmit) testing application and the [srt-stats-plotting](https://github.com/mbakholdina/srt-stats-plotting) utility. The commands to run the experiment are presented below. The sending side generates payload at the target bitrate, producing a CBR stream. The payload is then sent over UDP (4G stationary connection) to a remote receiver located in Azure EU West. The `--enable-metrics` argument instructs the payload generator to embed certain markers in the payload that the receiver can use to calculate metrics like packet loss, packet reordering, transmission delay and jitter. See the [srt-xtransmit docs](https://github.com/maxsharabayko/srt-xtransmit/wiki/UseCases) for further information on the topic.
