@@ -11,10 +11,15 @@ comments: false
 
 ---
 
+### Live Streaming using SRT with QUIC Datagrams
+Sharabayko M.A., Sharabayko M. P. \
+MHV '23: Proceedings of the 2nd Mile-High Video ConferenceMay 2023Pages 21–26. \
+Availability: [ACM Digital Library](https://dl.acm.org/doi/abs/10.1145/3588444.3590999).
+
 ### Fast Rate Estimation for RDO Mode Decision in HEVC
 SHARABAYKO M.P., PONOMAREV O.G. \
 Entropy. – 2014. – Vol. 16. – No. 12. – pp. 6667–6685 \
-Availability: [Entropy Journal](http://www.mdpi.com/1099-4300/16/12/6667)
+Availability: [Entropy Journal](http://www.mdpi.com/1099-4300/16/12/6667).
 
 ## Publications by Chronology
 --- 
@@ -22,10 +27,10 @@ Availability: [Entropy Journal](http://www.mdpi.com/1099-4300/16/12/6667)
 ### Contemporary Video Compression Standards. H.265/HEVC, VP9, VP10, Daala
 SHARABAYKO M.P., MARKOV N.G. \
 2016 International Siberian Conference on Control and Communications (SIBCON), Moscow, 12-14 May, 2016, pp. 1-4. \
-Availability: [IEEE Xplore](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7491791)
+Availability: [IEEE Xplore](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7491791).
 
 **Abstract**\
-In this paper we compare compression efficiency of the latest video coding standards H.265/HEVC, VP9, VP10 and Daala to H.264/AVC with the help of reference video encoders available.
+In this paper, we compare the compression efficiency of the latest video coding standards H.265/HEVC, VP9, VP10, and Daala to H.264/AVC with the help of reference video encoders available.
 
 --- 
 
@@ -53,7 +58,7 @@ Availability: [AMS Journal](http://www.m-hikari.com/ams/ams-2014/ams-173-176-201
 
 ---
 
-### Research on H.265/HEVC Intra Prediction Modes Selection Frequences
+### Research on H.265/HEVC Intra Prediction Modes Selection Frequencies
 SHARABAYKO M.P.
 XX International Conference CTT 2014, 14-18 April 2014, Vol. 2, pp. 315-316\
 Availability: [CTT digest](http://portal.tpu.ru/files/conferences/ctt/proceedings/2014/vol2_2014.pdf)
@@ -66,17 +71,17 @@ Applied Mathematical Sciences, Vol. 7, 2013, no. 137, pp. 6803-6824 \
 Availability: [AMS Journal](http://www.m-hikari.com/ams/ams-2013/ams-137-140-2013/sharabaykoAMS137-140-2013.pdf)
 
 **Abstract** \
-In this paper we get into detailed overview of intra compression dataflow in HEVC and VP9. We describe common and unique stages of both standards. Then we carry out experiments with JCT-VC HM and WebM VP9 encoders on intra compression e ciency. We also turn some of the HEVC features o to get its data ow as close to VP9 as possible. Finally we get into discussion of the e ciency of both codecs, the corresponding standards and their intra compression algorithms.
+In this paper, we get into a detailed overview of intra compression dataflow in HEVC and VP9. We describe the common and unique stages of both standards. Then we carry out experiments with JCT-VC HM and WebM VP9 encoders on intra compression efficiency. We also turn some of the HEVC features o to get its data ow as close to VP9 as possible. Finally, we get into a discussion of the efficiency of both codecs, the corresponding standards, and their intra-compression algorithms.
 
 ---
 
-### Next Generation Video Codecs: HEVC, VP9 and Daala
+### Next Generation Video Codecs: HEVC, VP9, and Daala
 SHARABAYKO M.P. \
 XI International Conference MSIT 2013, 13-16 November 2013, pp. 35-37 \
 Availability: [MSIT digest](http://portal.tpu.ru/f_ic/files/science/activities/msit/msit2013.pdf)
 
 **Abstract**\
-This paper contains a general review of new video compression standards HEVC, VP9 and Daala. Their compression efficiency is studied and compared to AVC.
+This paper contains a general review of new video compression standards HEVC, VP9, and Daala. Their compression efficiency is studied and compared to AVC.
 
 ---
 
@@ -86,7 +91,7 @@ SHARABAYKO M.P., MARKOV N.G.\
 Availability: [IEEExplore](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=6693615)
 
 **Abstract**\
-In this paper we propose iterative intra prediction search for H.265/HEVC encoder to reduce the number of prediction modes for estimation. We base on our research of computational complexity and usage frequency of H.265/HEVC intra prediction. On JCT-VC test sequences, we got about 40% encoding time reduction for HM 10.1 intra-only coding with negligible bitrate increase and PSNR quality degradation. We also offer some additional speed-up techniques, including fast prediction error estimation.
+In this paper, we propose an iterative intra prediction search for H.265/HEVC encoder to reduce the number of prediction modes for estimation. We base on our research of computational complexity and usage frequency of H.265/HEVC intra prediction. On JCT-VC test sequences, we got about 40% encoding time reduction for HM 10.1 intra-only coding with negligible bitrate increase and PSNR quality degradation. We also offer some additional speed-up techniques, including fast prediction error estimation.
 
 ---
 
@@ -96,7 +101,7 @@ TUSUR reports journal, Issue #3 (2013), p. 93-99.\
 Availability: [TUSUR](http://www.tusur.ru/filearchive/reports-magazine/2013-29-3/093.pdf)
 
 **Abstract** \
-An overview of deblock and SAO post-filtering in H.265/HEVC video compression standard is presented. The experimental results show the influence of DBF and SAO on video compression features. The results are followed by DBF and SAO usage recommendations.
+An overview of deblocking and SAO post-filtering in H.265/HEVC video compression standard is presented. The experimental results show the influence of DBF and SAO on video compression features. The results are followed by DBF and SAO usage recommendations.
 
 ---
 
@@ -116,7 +121,7 @@ SHARABAYKO M.P., MARKOV N.G. \
 Availability: [IEEExplore](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?tp=&arnumber=6357622)
 
 **Abstract** \
-This paper presents fast fractal image compression algorithm, based on quadtree image partitioning, Fisher block classification, block preparations and multithreaded coding process. Investigation results on efficiency of fractal still grayscale and color images compression are presented with comparison with JPEG results.
+This paper presents a fast fractal image compression algorithm, based on quadtree image partitioning, Fisher block classification, block preparations, and multithreaded coding process. Investigation results on the efficiency of fractal still grayscale and color image compression are presented with a comparison with JPEG results.
 
 ---
 
@@ -129,5 +134,5 @@ Availability: [Amazon](http://www.amazon.com/Fraktalnoe-szhatie-izobrazheniy-Rea
 {{< figure src="http://fic.bos.ru/images/fic_book_cover.jpg" >}}
 
 **Abstract**\
-This monograph provides research and performance results on fractal image compression suggestions and well-known techniques. As a result, fast fractal grayscale image compression algorithm is presented.
+This monograph provides research and performance results on fractal image compression suggestions and well-known techniques. As a result, a fast fractal grayscale image compression algorithm is presented.
 
