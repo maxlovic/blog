@@ -1,0 +1,43 @@
+.container {
+    max-width: 1800px; /* Adjust this value to your desired width */
+    margin: 0 auto;
+}
+
+:root {
+    --color-background: #303030; /* Dark gray background */
+    --color-text: #E3E3E3; /* Light gray text */
+    --color-primary: #1E90FF; /* Dodger blue primary color */
+    --color-primary-dark: #1C86EE; /* Darker shade of blue */
+    --color-primary-light: #63B8FF; /* Lighter shade of blue */
+    --color-secondary: #282828; /* Secondary dark gray background */
+    --color-border: #333333; /* Border color */
+}
+
+html, body {
+    background-color: var(--color-background);
+}
+
+.wrapper, .header, .widget-search__form {
+    background-color: #dadada; /* Dark gray background */
+}
+
+hr {
+	border-top: 1px solid #E22D30;
+}
+
+.list__item {
+    border-bottom: 1px solid #E22D30;
+}
+
+.meta, .meta a {
+    color: #E22D30;
+}   
+
+.meta__icon {
+    fill: #E22D30;
+}
+
+pre, code {
+    background-color: #cfcccc;
+    border: 1px solid #dadada;
+}
