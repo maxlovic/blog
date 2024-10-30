@@ -16,7 +16,7 @@ jobs:
           submodules: true
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
       - name: Patch Theme
-        run:
+        run: |
           cd themes/mainroad
           git apply ../../theme.patch
       - name: Setup Hugo
