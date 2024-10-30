@@ -2,13 +2,17 @@ baseURL = "https://maxsharabayko.github.io/blog/"
 languageCode = "en-us"
 title = "Max Sharabayko Blog"
 theme = "mainroad"
-paginate = "10"
 disqusShortname = "https-maxsharabayko-github-io-blog" # Enable Disqus comments
 
 [Author]
   name = "Maxim Sharabayko"
   bio = "To be added."
   avatar = "img/avatar.png"
+
+[pagination]
+  disableAliases = false
+  pagerSize = 10
+  path = 'page'
 
 [Params]
   #subtitle = "A personal blog about everything"
@@ -19,6 +23,7 @@ disqusShortname = "https-maxsharabayko-github-io-blog" # Enable Disqus comments
   mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" 
   mathjaxConfig = "TeX-AMS-MML_HTMLorMML"
   post_meta = ["date", "categories"]
+  customCSS = ["css/custom.css"]
   
 [Params.thumbnail]
   # Show thumbnail only for list items
