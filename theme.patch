@@ -7,5 +7,5 @@ index e54adb1..3c20ab1 100644
 -{{- if and .Site.IsMultiLingual (gt (len $translations) 0) }}
 +{{- if and hugo.IsMultilingual (gt (len $translations) 0) }}
  <div class="widget-languages widget">
-        <h4 class="widget__title">{{ T "languages_title" }}</h4>
-        <div class="widget__content">
+ 	<h4 class="widget__title">{{ T "languages_title" }}</h4>
+ 	<div class="widget__content">
