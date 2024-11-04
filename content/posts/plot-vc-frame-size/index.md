@@ -36,23 +36,27 @@ pip install pandas bokeh
 ```
 
 
-
 ## Step 1. Extract Frame Information  with FFprobe
 
 First, use <b>FFprobe</b>  to extract frame sizes and types from your MPEG TS file. 
 FFprobe is a perfect tool for this: it is free, well maintained and supports a wide range of codecs.
 
 ```shell
-ffprobe -v error -select_streams v:0 -show_entries frame=pkt_size,pict_type -of csv=p=0 input_file.ts > frame_info.csv
+ffprobe -v error -select_streams v:0 -show_entries frame=pkt_pos,pkt_size,pict_type -of csv=p=0 input_file.ts > frame_info.csv
 ```
 
-Replace `input_file.ts` with the path to your MPEG TS file. This command will output the frame size (`pkt_size`) and frame type (`pict_type`) in CSV format using FFprobe's [CSV writer](https://ffmpeg.org/ffprobe.html#Writers).
+Replace `input_file.ts` with the path to your MPEG TS file. This command will output the frame position (`pkt_pos`),
+size (`pkt_size`) and frame type (`pict_type`) in CSV format using FFprobe's [CSV writer](https://ffmpeg.org/ffprobe.html#Writers).
 
-The file produced for some reason will have four columns: frame size, picture type and two empty columns.
+The file produced will have frame position, frame size, picture type and two empty columns (for some reason).
+Note that frames are arranged in a display order. The frame position column can be used to rearrange data in a stream order.
 
 ```csv
-46380,I,,
-9202,B,,
+222968,46380,I,,
+288768,9202,B,,
+298356,5113,B,,
+303620,3164,B,,
+270908,17308,P,,
 ```
 
 ## Step 2: Load and Process the CSV Data
@@ -62,6 +66,7 @@ Next, we’ll load the CSV data into a pandas DataFrame and process it to calcul
 ### 2.1 Load CSV Data
 
 Let's create a function to load the CSV data and drop two empty columns in a CSV file produced by FFprobe.
+Additionally the data frame is sorted based on `frame_pos` column to use a stream order.
 The function will return a pandas DataFrame.
 
 ```python
@@ -69,8 +74,10 @@ import pandas as pd
 
 def load_csv(file_path):
     """Load CSV file into a DataFrame and drop empty columns."""
-    df = pd.read_csv(file_path, header=None, names=['frame_size', 'pict_type', 'empty1', 'empty2'])
+    df = pd.read_csv(file_path, header=None, names=['frame_pos', 'frame_size', 'pict_type', 'empty1', 'empty2'])
     df = df.drop(columns=['empty1', 'empty2'])
+    # Convert display order to stream order. Drop the old index to use the new order.
+    df = df.sort_values(by='frame_pos').reset_index(drop=True)
     return df
 ```
 
